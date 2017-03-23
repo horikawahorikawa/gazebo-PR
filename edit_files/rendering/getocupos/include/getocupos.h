@@ -128,9 +128,9 @@ private:
     {
         if( msg->tmsdb[i].id == id ){
           //Get position form the data basis
-          x = msg->tmsdb[i].x / 1000;
-          y = msg->tmsdb[i].y / 1000;
-          z = msg->tmsdb[i].z / 1000;
+          x = msg->tmsdb[i].x;
+          y = msg->tmsdb[i].y;
+          z = msg->tmsdb[i].z;
 
           if(choice == 0x01){ // if moverio chosen
             //filter angles' data
@@ -151,9 +151,9 @@ private:
 
           if( x == 0 && y == 0 && z == 0 )
           {
-            x = x_old / 1000;
-            y = y_old / 1000;
-            z = z_old / 1000;
+            x = x_old;
+            y = y_old;
+            z = z_old;
           }
 
           //transformation to send to Rviz
@@ -179,9 +179,9 @@ private:
           brOc.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "map", "oculus_plugin"));
           brOc.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "start_position", "oculus_plugin"));
 
-          ocubar->x = x * 1000;
-          ocubar->y = y * 1000;
-          ocubar->z = z * 1000;
+          ocubar->x = x;
+          ocubar->y = y;
+          ocubar->z = z;
           ocubar->rr = -rr;
           ocubar->rp = -rp;
           ocubar->ry = ry;

@@ -19,12 +19,11 @@
 #define _GAZEBO_OCULUS_CAMERA_HH_
 
 #include <string>
-
+#include <chrono>
 #include "gazebo/rendering/Camera.hh"
 #include "getocupos/include/OculusBar.h"
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
-
 
 namespace gazebo
 {
@@ -138,6 +137,8 @@ namespace gazebo
       /// \brief Apply distorsion to the render target.
       private: void Oculus();
 
+      private: void UpdateBackgroundImages();
+
       /// \internal
       /// \brief Pointer to private data.
 
@@ -150,11 +151,18 @@ namespace gazebo
       private: float prev_ovr_roll, prev_ovr_pitch, prev_ovr_yaw;
       private: float ovr_roll_offset, ovr_pitch_offset, ovr_yaw_offset;
       private: float init_roll_offset = 0.0, init_pitch_offset = 0.0, init_yaw_offset = 0.0;
+      private: float prev_ovr_x, prev_ovr_y;
+      private: float prev_ovr_yaw_offset = 0;
+      private: float current_vicon_yaw;
+      private: float prev_vicon_yaw;
       private: bool reset_ovr_position;
+      private: std::chrono::system_clock::time_point prev_time;
+      private: double frame_rate;
+      private: double total_time;
       public: OculusBar* ocubar;
       public: int temp, temp2;
       public: bool stereocam = false, vicontracker = false, debug = false;
-      public: float OculusFOV = 105;
+      public: float OculusFOV = 115;
       public: void SetOculusFOV(float oculusfov);
       public: void ConnectROS();
       public: void OculusAddrpy(float Input_roll, float Input_pitch, float Input_yaw);

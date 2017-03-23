@@ -82,7 +82,6 @@ OculusCamera::OculusCamera(const std::string &_name, ScenePtr _scene)
       this->dataPtr->rightCapture.grab();
       usleep(1000);
     }
-
     for (int i = 0; i < 20; ++i){
       this->dataPtr->leftCapture.grab();
       usleep(1000);
@@ -116,8 +115,8 @@ OculusCamera::OculusCamera(const std::string &_name, ScenePtr _scene)
         cv::getOptimalNewCameraMatrix(cameraMatrixL, distCoeffsL, imageSize, 1, imageSize, 0),
                                     imageSize, CV_16SC2, map1L, map2L);
 
+    // prev_time = std::chrono::system_clock::now();
 		std::cout<<"Prepared distorting camera"<<std::endl;
-
   }
 
     //cv::namedWindow("MJPEG0", CV_WINDOW_AUTOSIZE);
@@ -302,19 +301,23 @@ void OculusCamera::Init()
   }
 
 }
-
+std::chrono::system_clock::time_point Oculus_head_time;
 //////////////////////////////////////////////////
 void OculusCamera::RenderImpl()
 {
   //Video images
-
   if(stereocam == true){
     if (this->dataPtr->rightCapture.grab() && this->dataPtr->leftCapture.grab()){
       this->dataPtr->rightCapture.mjpeg(this->dataPtr->mjpeg0);
       this->dataPtr->leftCapture.mjpeg(this->dataPtr->mjpeg1);
     }
+
     cv::flip(this->dataPtr->mjpeg0, this->dataPtr->mjpeg0, -1);
     cv::flip(this->dataPtr->mjpeg1, this->dataPtr->mjpeg1, -1);
+
+    // cv::Mat temp_resize(480, 640, CV_8UC3);
+    // cv::resize(this->dataPtr->mjpeg0, this->dataPtr->mjpeg0, temp_resize.size(), 0, 0);
+    // cv::resize(this->dataPtr->mjpeg1, this->dataPtr->mjpeg1, temp_resize.size(), 0, 0);
 
     cv::remap(this->dataPtr->mjpeg0, this->dataPtr->mjpeg0, map1R, map2R, cv::INTER_LINEAR);
     cv::remap(this->dataPtr->mjpeg1, this->dataPtr->mjpeg1, map1L, map2L, cv::INTER_LINEAR);
@@ -409,7 +412,6 @@ void OculusCamera::RenderImpl()
 
        // Attach background to the scene
        this->sceneNode->attachObject(leftrect);
-
        this->dataPtr->renderTextureLeft->getBuffer()->getRenderTarget()->update();
 
        delete leftrect;
@@ -434,7 +436,6 @@ void OculusCamera::RenderImpl()
 
        // Attach background to the scene
        this->sceneNode->attachObject(rightrect);
-
        this->dataPtr->renderTextureRight->getBuffer()->getRenderTarget()->update();
 
        delete rightrect;
@@ -444,6 +445,26 @@ void OculusCamera::RenderImpl()
        this->renderTarget->update();
        ovrHmd_EndFrameTiming(this->dataPtr->hmd);
        this->dataPtr->frameIndex++;
+
+
+      // std::chrono::duration<double> sec = std::chrono::system_clock::now() - prev_time;
+      // prev_time = std::chrono::system_clock::now();
+      // double dur = sec.count();
+      // //  total_time += dur;
+      // //  frame_rate = this->dataPtr->frameIndex / render_time;
+      // //  std::cout<<"total_time :"<<total_time<<std::endl;
+      // //  std::cout<<"frame_Index :"<<this->dataPtr->frameIndex<<std::endl;
+      // std::cout<<"duration_sec :"<<dur<<std::endl;
+      // //  std::cout<<"frame_rate :"<<frame_rate<<std::endl<<std::endl;
+
+      // std::cout<<"Render_frame_index :"<<this->dataPtr->frameIndex<<std::endl;
+      // std::chrono::duration<double> sec = std::chrono::system_clock::now() - prev_time;
+      // double dur = sec.count();
+      // std::cout<<"duration_sec :"<<dur<<std::endl;
+      // std::chrono::duration<double> sec = std::chrono::system_clock::now() - prev_time;
+      // double dur = sec.count();
+      // std::cout<<"duration_sec :"<<dur<<std::endl;
+      // prev_time = std::chrono::system_clock::now();
   }
   else{
     ovrHmd_BeginFrameTiming(this->dataPtr->hmd, this->dataPtr->frameIndex);
@@ -457,7 +478,6 @@ void OculusCamera::RenderImpl()
     this->dataPtr->frameIndex++;
   }
 }
-
 //////////////////////////////////////////////////
 void OculusCamera::Update()
 {
@@ -465,6 +485,8 @@ void OculusCamera::Update()
     return;
 
   Camera::Update();
+
+  // std::cout<<"OcuCamUpdate_frame_index :"<<this->dataPtr->frameIndex<<std::endl;
 
   ovrFrameTiming frameTiming = ovrHmd_GetFrameTiming(this->dataPtr->hmd,
       this->dataPtr->frameIndex);
@@ -495,9 +517,13 @@ void OculusCamera::Update()
       current_ovr_yaw = yaw + M_PI;
 
       if(reset_ovr_position){
+        prev_ovr_x = ocubar->x;
+        prev_ovr_y = ocubar->y;
         ovr_sim_roll = ocubar->rr;
         ovr_sim_pitch = ocubar->rp;
         ovr_sim_yaw = ocubar->ry - (10.0 / 180.0 * M_PI);
+        current_vicon_yaw = ocubar->ry - (10.0 / 180.0 * M_PI) + init_yaw_offset;
+        prev_vicon_yaw = current_vicon_yaw;
         //debug
         init_vicon_roll = ovr_sim_roll;
         init_vicon_pitch = ovr_sim_pitch;
@@ -514,17 +540,17 @@ void OculusCamera::Update()
           ovr_sim_yaw = ovr_sim_yaw + init_yaw_offset;
 
           if(ovr_sim_roll < -M_PI)
-            ovr_sim_roll = M_PI - (M_PI + ovr_sim_roll);
+            ovr_sim_roll = M_PI + (M_PI + ovr_sim_roll);
           else if(ovr_sim_roll > M_PI)
             ovr_sim_roll = -M_PI + (ovr_sim_roll - M_PI);
 
           if(ovr_sim_pitch < -M_PI)
-            ovr_sim_pitch = M_PI - (M_PI + ovr_sim_pitch);
+            ovr_sim_pitch = M_PI + (M_PI + ovr_sim_pitch);
           else if(ovr_sim_pitch > M_PI)
             ovr_sim_pitch = -M_PI + (ovr_sim_pitch - M_PI);
 
           if(ovr_sim_yaw < -M_PI)
-            ovr_sim_yaw = M_PI - (M_PI + ovr_sim_yaw);
+            ovr_sim_yaw = M_PI + (M_PI + ovr_sim_yaw);
           else if(ovr_sim_yaw > M_PI)
             ovr_sim_yaw = -M_PI + (ovr_sim_yaw - M_PI);
         }
@@ -578,11 +604,6 @@ void OculusCamera::Update()
             ovr_yaw_offset = current_ovr_yaw - prev_ovr_yaw;
         }
 
-        //prevはヘッダに定義
-        prev_ovr_roll = current_ovr_roll;
-        prev_ovr_pitch = current_ovr_pitch;
-        prev_ovr_yaw = current_ovr_yaw;
-
         ovr_sim_roll = ovr_sim_roll + ovr_roll_offset;
         ovr_sim_pitch = ovr_sim_pitch + ovr_pitch_offset;
         ovr_sim_yaw = ovr_sim_yaw + ovr_yaw_offset;
@@ -602,124 +623,42 @@ void OculusCamera::Update()
         else if(ovr_sim_yaw > M_PI)
           ovr_sim_yaw = -M_PI + (ovr_sim_yaw - M_PI);
 
-        gazebo::math::Quaternion ovr_sim_q(ovr_sim_roll, ovr_sim_pitch, ovr_sim_yaw);
+        current_vicon_yaw = ocubar->ry - (10.0 / 180.0 * M_PI) + init_yaw_offset;
+        if(current_vicon_yaw < -M_PI)
+          current_vicon_yaw = M_PI + (M_PI + current_vicon_yaw);
+        else if(current_vicon_yaw > M_PI)
+          current_vicon_yaw = -M_PI + (current_vicon_yaw - M_PI);
 
+        if(abs(current_vicon_yaw - prev_vicon_yaw) < 0.174 ||
+            abs(current_vicon_yaw - prev_vicon_yaw) > 1.57 * 3)
+          prev_vicon_yaw = current_vicon_yaw;
+        else
+          current_vicon_yaw = prev_vicon_yaw;
 
-        /*
-        if(temp == 60){
-          std::cout<<"oculus_position___"<<"x:"<<ocubar->x<<", y:"<<ocubar->y<<", z:"<<ocubar->z<<std::endl;
-          std::cout<<"previous_oculus_position___"<<"x:"<<ocubar->x_old<<", y:"<<ocubar->y_old<<", z:"<<ocubar->z_old<<std::endl;
-          std::cout<<std::endl;
+        gazebo::math::Quaternion ovr_sim_q(ovr_sim_roll, ovr_sim_pitch, current_vicon_yaw);
 
-          std::cout<<"vicon_quaternion___"<<"w:"<<ocubar->qw<<", x:"<<ocubar->qx<<", y:"<<ocubar->qy<< ", z:"<<ocubar->qz << std::endl;
-          std::cout<<"oculus_sensor_quaternion___"<<"w:"<<ovrpose.Orientation.w<<", x:"<<ovrpose.Orientation.x<<", y:"<<ovrpose.Orientation.y << ", z:"<<ovrpose.Orientation.z << std::endl;
-          std::cout<<"calc_simlation_quaternion___"<<"w"<<ovr_sim_q.w<<", x:"<<ovr_sim_q.x<<", y:"<<ovr_sim_q.y<<", z:"<<ovr_sim_q.z<<std::endl;
-          std::cout<<std::endl;
+        if(abs(ocubar->x - prev_ovr_x) > 1.0 || abs(ocubar->y - prev_ovr_y) > 1.0)
+          ovr_sim_q.SetFromEuler(ovr_sim_roll, ovr_sim_pitch, prev_vicon_yaw);
 
-          std::cout<<"vicon_init_pose___"<<"roll:"<<init_vicon_roll<<", pitch:"<<init_vicon_pitch<<", yaw:"<<init_vicon_yaw<<std::endl;
-          std::cout<<"vicon_current_pose___"<<"roll:"<<ocubar->rr<<", pitch:"<<ocubar->rp<<", yaw:"<<ocubar->ry<<std::endl;
-          std::cout<<"current_oculus_sensor_pose___"<<"roll:"<<current_ovr_roll<<", pitch:"<<current_ovr_pitch<<", yaw:"<<current_ovr_yaw<<std::endl;
-          std::cout<<"previous_oculus_sensor_pose___"<<"roll:"<<prev_ovr_roll<<", pitch:"<<prev_ovr_pitch<<", yaw:"<<prev_ovr_yaw<<std::endl;
-          std::cout<<"oculus_pose_offset___"<<"roll:"<<ovr_roll_offset<<", pitch:"<<ovr_pitch_offset<<", yaw:"<<ovr_yaw_offset<<std::endl;
-          //std::cout<<"calc_simulation_pose___"<<"roll:"<<ovr_sim_roll<<", pitch:"<<ovr_sim_pitch<<", yaw:"<<ovr_sim_yaw<< std::endl;
-          std::cout<<std::endl;
-          temp = 0;
-        }
-      else temp += 1;
-      */
+        // std::cout<<"current_vicon_yaw :"<<current_vicon_yaw<<std::endl;
+        // std::cout<<"prev_vicon_yaw :"<<prev_vicon_yaw<<std::endl;
+        // std::cout<<"ovr_sim_q.yaw :"<<ovr_sim_q.GetYaw()<<std::endl;
 
-      math::Vector3 oculus_position(ocubar->x, ocubar->y, ocubar->z);
-      this->SetWorldPosition(oculus_position);
-      this->sceneNode->setOrientation(Ogre::Quaternion(
-          ovr_sim_q.w,
-          -ovr_sim_q.x,
-          -ovr_sim_q.y,
-          ovr_sim_q.z));
-    }
-      /*
-      math::Vector3 oculus_position(ocubar->x, ocubar->y, ocubar->z);
-      this->SetWorldPosition(oculus_position);
+        prev_ovr_roll = current_ovr_roll;
+        prev_ovr_pitch = current_ovr_pitch;
+        prev_ovr_yaw = current_vicon_yaw;
 
-      if(reset_ovr_position)
-      {
-        this->ovr_rr = ocubar->rr;
-        this->ovr_rp = ocubar->rp;
-        this->ovr_ry = ocubar->ry;
-        this->init_ovr_rr = roll;
-        this->init_ovr_rp = pitch;
-        this->init_ovr_ry = yaw;
+        math::Vector3 oculus_position(ocubar->x, ocubar->y, ocubar->z);
+        this->SetWorldPosition(oculus_position);
+        this->sceneNode->setOrientation(Ogre::Quaternion(
+            ovr_sim_q.w,
+            -ovr_sim_q.x,
+            -ovr_sim_q.y,
+            ovr_sim_q.z));
 
-        if(ovr_rr != 0 && ovr_rp != 0 && ovr_ry != 0)
-          reset_ovr_position = false;
+        prev_ovr_x = ocubar->x;
+        prev_ovr_y = ocubar->y;
       }
-      if(init_ovr_rr < roll)
-      {
-        ovr_rr_offset = ovr_rr + roll - init_ovr_rr;
-        if(ovr_rr_offset > 3.14) ovr_rr_offset = -3.14 + ovr_rr_offset - 3.14;
-      }
-      else
-      {
-        ovr_rr_offset = ovr_rr - (init_ovr_rr - roll);
-        if(ovr_rr_offset < -3.14) ovr_rr_offset = 3.14 - ovr_rr_offset + 3.14;
-      }
-      if(init_ovr_rp < pitch)
-      {
-        ovr_rp_offset = ovr_rp + pitch - init_ovr_rp;
-        if(ovr_rp_offset > 3.14) ovr_rp_offset = -3.14 + ovr_rp_offset - 3.14;
-      }
-      else
-      {
-        ovr_rp_offset = ovr_rp - (init_ovr_rp - pitch);
-        if(ovr_rp_offset < -3.14) ovr_rp_offset = 3.14 - ovr_rp_offset + 3.14;
-      }
-      if(init_ovr_ry < yaw)
-      {
-        ovr_ry_offset = ovr_ry + yaw - init_ovr_ry;
-        if(ovr_ry_offset > 3.14) ovr_ry_offset = -3.14 + ovr_ry_offset - 3.14;
-      }
-      else
-      {
-        ovr_ry_offset = ovr_ry - (init_ovr_ry - yaw);
-        if(ovr_ry_offset < -3.14) ovr_ry_offset = 3.14 - ovr_ry_offset + 3.14;
-      }
-
-      float temproll, temppitch, tempyaw;
-      gazebo::math::Quaternion tempq(ovr_rr_offset, ovr_rp_offset, ovr_ry_offset);
-      float tempw, tempx, tempy, tempz;
-      if(temp == 60)
-      {
-        std::cout<<"x:"<<ocubar->x<<", y:"<<ocubar->y<<", z:"<<ocubar->z<<std::endl;
-        std::cout<<"x_old:"<<ocubar->x_old<<", y_old:"<<ocubar->y_old<<", z_old:"<<ocubar->z_old<<std::endl;
-        std::cout<<std::endl;
-
-        std::cout<<"qw:"<<ocubar->qw<<", qx:"<<ocubar->qx<<", qy:"<<ocubar->qy<< ", qz:"<<ocubar->qz << std::endl;
-        std::cout<<"ow:"<<ovrpose.Orientation.w<<", ox:"<<ovrpose.Orientation.x<<", oy:"<<ovrpose.Orientation.y << ", oz:"<<ovrpose.Orientation.z << std::endl;
-
-        tempw = tempq.w;
-        tempx = tempq.x;
-        tempy = tempq.y;
-        tempz = tempq.z;
-        temproll = ovr_rr_offset;
-        tempyaw = ovr_ry_offset;
-        temppitch = ovr_rp_offset;
-        std::cout<<"tow:"<<tempw<<", tox:"<<tempx<<", toy:"<<tempy << ", toz:"<<tempz << std::endl;
-        std::cout<<std::endl;
-
-        std::cout<<"virtinir:"<<ovr_rr<<", virtinip:"<<ovr_rp<<", virtiniy:"<<ovr_ry << std::endl;
-        std::cout<<"realinir:"<<init_ovr_rr<<", realinip:"<<init_ovr_rp<<", realiniy:"<<init_ovr_ry << std::endl;
-        std::cout<<"tor:"<<temproll<<", top:"<<temppitch<<", toy:"<<tempyaw << std::endl;
-        std::cout<<"rr:"<<ocubar->rr<<", rp:"<<ocubar->rp<<", ry:"<<ocubar->ry<<std::endl;
-        std::cout<<"or:"<<roll<<", op:"<<pitch<<", oy:"<<yaw<<std::endl;
-        std::cout<<std::endl;
-        temp = 0;
-      }
-      else temp += 1;
-      this->sceneNode->setOrientation(Ogre::Quaternion(
-          tempq.w,
-          -tempq.x,
-          -tempq.y,
-          tempq.z));
-          */
     }
     else{
       this->sceneNode->setOrientation(Ogre::Quaternion(
