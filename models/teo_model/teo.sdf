@@ -1,0 +1,2664 @@
+<sdf version='1.4'>
+  <model name='teo'>
+  <pose>0 0 0.856 0 0 0</pose>
+    <link name='waist'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0.030531 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.0167296</ixx>
+          <ixy>-4.1e-07</ixy>
+          <ixz>-0.00040359</ixz>
+          <iyy>0.00875441</iyy>
+          <iyz>8e-08</iyz>
+          <izz>0.020584</izz>
+        </inertia>
+      </inertial>
+      <collision name='waist_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/waist-base.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='waist_collision_waist_1'>
+        <pose>0 0 0.07336 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/waist-link.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='waist_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/waist-base.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='waist_visual_waist_1'>
+        <pose>0 0 0.07336 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/waist-link.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link> 
+    <joint name='base_joint' type='revolute'>
+      <parent>world</parent>
+      <child>waist</child>
+      <pose>0 0 0 0 0 0</pose>
+      <axis>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+        </dynamics>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    <link name='l_hip_yaw_link'>
+      <pose>0 0.146 -0.10237 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 0 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00034076</ixx>
+          <ixy>-0</ixy>
+          <ixz>5.4e-07</ixz>
+          <iyy>0.00057638</iyy>
+          <iyz>-0</iyz>
+          <izz>0.00037186</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hip_yaw_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_hip_yaw.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_hip_yaw_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_hip_yaw.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_hip_yaw' type='revolute'>
+      <child>l_hip_yaw_link</child>
+      <parent>waist</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.523599</lower>
+          <upper>0.418879</upper>
+          <effort>45</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_hip_roll_link'>
+      <pose>0 0.146 -0.10237 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 -0.017753 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00036847</ixx>
+          <ixy>-4.34e-06</ixy>
+          <ixz>1e-08</ixz>
+          <iyy>0.00019052</iyy>
+          <iyz>-0</iyz>
+          <izz>0.00045536</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_hip_roll_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_hip_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_hip_roll_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_hip_pitch.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_hip_roll' type='revolute'>
+      <child>l_hip_roll_link</child>
+      <parent>l_hip_yaw_link</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-0.698132</lower>
+          <upper>0.523599</upper>
+          <effort>65</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_femur_link'>
+      <pose>0 0.146 -0.10237 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 -0.17257 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.0445365</ixx>
+          <ixy>1e-08</ixy>
+          <ixz>0.00130498</ixz>
+          <iyy>0.0446349</iyy>
+          <iyz>-4e-08</iyz>
+          <izz>0.0220708</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_femur_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_femur.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_femur_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_femur.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_hip_pitch' type='revolute'>
+      <child>l_femur_link</child>
+      <parent>l_hip_roll_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-2.0944</lower>
+          <upper>0.785398</upper>
+          <effort>60</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_tibia_link'>
+      <pose>0 0.146 -0.43237 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 -0.142721 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.0464421</ixx>
+          <ixy>-0</ixy>
+          <ixz>-7.32e-06</ixz>
+          <iyy>0.0454827</iyy>
+          <iyz>1e-08</iyz>
+          <izz>0.00816616</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_tibia_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_tibia.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_tibia_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_tibia.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_knee_pitch' type='revolute'>
+      <child>l_tibia_link</child>
+      <parent>l_femur_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.5708</upper>
+          <effort>140</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_ankle_pitch_link'>
+      <pose>0 0.113 -0.73237 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 0.028198 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00010237</ixx>
+          <ixy>-1.4e-05</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00035107</iyy>
+          <iyz>0</iyz>
+          <izz>0.00035006</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_ankle_pitch_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_ankle_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_ankle_pitch_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_ankle_pitch.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_ankle_pitch' type='revolute'>
+      <child>l_ankle_pitch_link</child>
+      <parent>l_tibia_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.349066</lower>
+          <upper>0.349066</upper>
+          <effort>85</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='l_astragalus_link'>
+      <pose>0 0.113 -0.73237 0 -0 0</pose>
+      <inertial>
+        <pose>0.0113145 -0.001224 -0.077401 0 -0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.00341467</ixx>
+          <ixy>-7.94621e-05</ixy>
+          <ixz>0.000895215</ixz>
+          <iyy>0.0049938</iyy>
+          <iyz>-7.78808e-05</iyz>
+          <izz>0.00297552</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_astragalus_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_ankle_roll.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='l_astragalus_link_collision_l_astragalus_link_1'>
+        <pose>0 0 -0.073 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_ankle_sensorFT.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='l_astragalus_link_collision_l_sole'>
+        <pose>0 0 -0.124 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_foot.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+        <surface>
+          <contact>
+            <ode>
+              <max_vel>1</max_vel>
+              <min_depth>0.003</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+              <fdir1>1 0 0</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='l_astragalus_link_collision_l_sole_1'>
+        <pose>0 0 -0.124 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_union_sensorFT_foot.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_astragalus_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_ankle_roll.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='l_astragalus_link_visual_l_astragalus_link_1'>
+        <pose>0 0 -0.073 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_ankle_sensorFT.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='l_astragalus_link_visual_l_sole'>
+        <pose>0 0 -0.124 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_foot.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='l_astragalus_link_visual_l_sole_1'>
+        <pose>0 0 -0.124 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/l_union_sensorFT_foot.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_ankle_roll' type='revolute'>
+      <child>l_astragalus_link</child>
+      <parent>l_ankle_pitch_link</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.48353</lower>
+          <upper>1.48353</upper>
+          <effort>65</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hip_yaw_link'>
+      <pose>0 -0.146 -0.10237 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00034076</ixx>
+          <ixy>0</ixy>
+          <ixz>5.4e-07</ixz>
+          <iyy>0.00057638</iyy>
+          <iyz>0</iyz>
+          <izz>0.00037186</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hip_yaw_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_hip_yaw.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_hip_yaw_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_hip_yaw.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_hip_yaw' type='revolute'>
+      <child>r_hip_yaw_link</child>
+      <parent>waist</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.523599</lower>
+          <upper>0.418879</upper>
+          <effort>45</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_hip_roll_link'>
+      <pose>0 -0.146 -0.10237 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 -0.017753 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00036847</ixx>
+          <ixy>4.34e-06</ixy>
+          <ixz>1e-08</ixz>
+          <iyy>0.00019052</iyy>
+          <iyz>0</iyz>
+          <izz>0.00045536</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_hip_roll_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_hip_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_hip_roll_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_hip_pitch.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_hip_roll' type='revolute'>
+      <child>r_hip_roll_link</child>
+      <parent>r_hip_yaw_link</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-0.698132</lower>
+          <upper>0.523599</upper>
+          <effort>65</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_femur_link'>
+      <pose>0 -0.146 -0.10237 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 -0.17257 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.0445365</ixx>
+          <ixy>-1e-08</ixy>
+          <ixz>0.00130498</ixz>
+          <iyy>0.0446349</iyy>
+          <iyz>4e-08</iyz>
+          <izz>0.0220708</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_femur_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_femur.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_femur_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_femur.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_hip_pitch' type='revolute'>
+      <child>r_femur_link</child>
+      <parent>r_hip_roll_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-2.0944</lower>
+          <upper>0.785398</upper>
+          <effort>60</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_tibia_link'>
+      <pose>0 -0.146 -0.43237 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 -0.142721 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.0464421</ixx>
+          <ixy>0</ixy>
+          <ixz>-7.32e-06</ixz>
+          <iyy>0.0454827</iyy>
+          <iyz>-1e-08</iyz>
+          <izz>0.00816616</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_tibia_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_tibia.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_tibia_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_tibia.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_knee_pitch' type='revolute'>
+      <child>r_tibia_link</child>
+      <parent>r_femur_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.5708</upper>
+          <effort>140</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_ankle_pitch_link'>
+      <pose>0 -0.113 -0.73237 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0.028198 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00010237</ixx>
+          <ixy>1.4e-05</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00035107</iyy>
+          <iyz>-0</iyz>
+          <izz>0.00035006</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_ankle_pitch_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_ankle_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_ankle_pitch_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_ankle_pitch.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_ankle_pitch' type='revolute'>
+      <child>r_ankle_pitch_link</child>
+      <parent>r_tibia_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.349066</lower>
+          <upper>0.349066</upper>
+          <effort>85</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='r_astragalus_link'>
+      <pose>0 -0.113 -0.73237 0 -0 0</pose>
+      <inertial>
+        <pose>0.0113145 0.001224 -0.077401 0 -0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.00341467</ixx>
+          <ixy>7.94621e-05</ixy>
+          <ixz>0.000895215</ixz>
+          <iyy>0.0049938</iyy>
+          <iyz>7.78808e-05</iyz>
+          <izz>0.00297552</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_astragalus_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_ankle_roll.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='r_astragalus_link_collision_r_astragalus_link_1'>
+        <pose>0 0 -0.073 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_ankle_sensorFT.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='r_astragalus_link_collision_r_sole'>
+        <pose>0 0 -0.124 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_foot.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+        <surface>
+          <contact>
+            <ode>
+              <max_vel>1</max_vel>
+              <min_depth>0.003</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+              <fdir1>1 0 0</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='r_astragalus_link_collision_r_sole_1'>
+        <pose>0 0 -0.124 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_union_sensorFT_foot.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>100</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_astragalus_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_ankle_roll.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='r_astragalus_link_visual_r_astragalus_link_1'>
+        <pose>0 0 -0.073 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_ankle_sensorFT.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='r_astragalus_link_visual_r_sole'>
+        <pose>0 0 -0.124 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_foot.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='r_astragalus_link_visual_r_sole_1'>
+        <pose>0 0 -0.124 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/legs/r_union_sensorFT_foot.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_ankle_roll' type='revolute'>
+      <child>r_astragalus_link</child>
+      <parent>r_ankle_pitch_link</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.48353</lower>
+          <upper>1.48353</upper>
+          <effort>65</effort>
+          <velocity>4</velocity>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='waist_yaw_link'>
+      <pose>0 0 0.1907 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 -0.02463 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00028026</ixx>
+          <ixy>-2.9e-07</ixy>
+          <ixz>-4.22e-06</ixz>
+          <iyy>0.0001275</iyy>
+          <iyz>4.4e-07</iyz>
+          <izz>0.00020857</izz>
+        </inertia>
+      </inertial>
+      <collision name='waist_yaw_link_collision'>
+        <pose>0 0 -0.001 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/waist-yaw.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='waist_yaw_link_visual'>
+        <pose>0 0 -0.001 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/waist-yaw.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='waist_yaw' type='revolute'>
+      <child>waist_yaw_link</child>
+      <parent>waist</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.785398</lower>
+          <upper>0.523599</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='waist_pitch_link'>
+      <pose>0 0 0.1907 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0.221233 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00100973</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00019175</iyy>
+          <iyz>0</iyz>
+          <izz>0.00100972</izz>
+        </inertia>
+      </inertial>
+      <collision name='waist_pitch_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/waist-pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='waist_pitch_link_collision_waist_pitch_link_1'>
+        <pose>0 0 0.06 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/torso.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='waist_pitch_link_collision_waist_pitch_link_2'>
+        <pose>0 0.25486 0.305 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/L-torso-shoulder.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='waist_pitch_link_collision_waist_pitch_link_3'>
+        <pose>0 -0.25486 0.305 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/R-torso-shoulder.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='waist_pitch_link_collision_waist_pitch_link_4'>
+        <pose>0 0 0.346 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/neck.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='waist_pitch_link_collision_waist_pitch_link_5'>
+        <pose>0 0 0.434 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/head.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='waist_pitch_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/waist-pitch.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='waist_pitch_link_visual_waist_pitch_link_1'>
+        <pose>0 0 0.06 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/torso.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='waist_pitch_link_visual_waist_pitch_link_2'>
+        <pose>0 0.25486 0.305 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/L-torso-shoulder.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='waist_pitch_link_visual_waist_pitch_link_3'>
+        <pose>0 -0.25486 0.305 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/R-torso-shoulder.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='waist_pitch_link_visual_waist_pitch_link_4'>
+        <pose>0 0 0.346 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/neck.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='waist_pitch_link_visual_waist_pitch_link_5'>
+        <pose>0 0 0.434 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/torso/head.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='waist_pitch' type='revolute'>
+      <child>waist_pitch_link</child>
+      <parent>waist_yaw_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.785398</lower>
+          <upper>0.523599</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='l_shoulder_pitch_link'>
+      <pose>0 0.34 0.4957 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>0.00059121</ixx>
+          <ixy>6.03e-06</ixy>
+          <ixz>1.03e-06</ixz>
+          <iyy>0.00024956</iyy>
+          <iyz>5.131e-05</iyz>
+          <izz>0.00050653</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_shoulder_pitch_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_shoulder_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_shoulder_pitch_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_shoulder_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_shoulder_pitch' type='revolute'>
+      <child>l_shoulder_pitch_link</child>
+      <parent>waist_pitch_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='l_shoulder_roll_link'>
+      <pose>0 0.34 0.4957 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>0.00018036</ixx>
+          <ixy>-7.73e-06</ixy>
+          <ixz>2.406e-05</ixz>
+          <iyy>0.00024499</iyy>
+          <iyz>1.826e-05</iyz>
+          <izz>0.00013143</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_shoulder_roll_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_shoulder_roll.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_shoulder_roll_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_shoulder_roll.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_shoulder_roll' type='revolute'>
+      <child>l_shoulder_roll_link</child>
+      <parent>l_shoulder_pitch_link</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-0.785398</lower>
+          <upper>2.0944</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='l_shoulder_yaw_link'>
+      <pose>0 0.34 0.4957 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>1.75063</mass>
+        <inertia>
+          <ixx>0.00227681</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00224821</iyy>
+          <iyz>-6.84e-06</iyz>
+          <izz>0.00032283</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_shoulder_yaw_link_collision'>
+        <pose>0 0 -0.12126 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_shoulder_yaw.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='l_shoulder_yaw_link_collision_l_shoulder_yaw_link_1'>
+        <pose>0 0 -0.27651 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_humerus.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='l_shoulder_yaw_link_collision_l_shoulder_yaw_link_2'>
+        <pose>0 0 -0.28351 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_union_humerus_elbow.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_shoulder_yaw_link_visual'>
+        <pose>0 0 -0.12126 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_shoulder_yaw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='l_shoulder_yaw_link_visual_l_shoulder_yaw_link_1'>
+        <pose>0 0 -0.27651 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_humerus.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='l_shoulder_yaw_link_visual_l_shoulder_yaw_link_2'>
+        <pose>0 0 -0.28351 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_union_humerus_elbow.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_shoulder_yaw' type='revolute'>
+      <child>l_shoulder_yaw_link</child>
+      <parent>l_shoulder_roll_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.0472</lower>
+          <upper>1.0472</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='l_elbow_pitch_link'>
+      <pose>0 0.34 0.16669 0 -0 0</pose>
+      <inertial>
+        <pose>0 0.001 -0.000588 0 -0 0</pose>
+        <mass>2.396</mass>
+        <inertia>
+          <ixx>0.0005939</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00060871</iyy>
+          <iyz>-0</iyz>
+          <izz>0.00023257</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_elbow_pitch_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_elbow_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='l_elbow_pitch_link_collision_l_elbow_pitch_link_1'>
+        <pose>0 0 -0.11324 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_elbow_link.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='l_elbow_pitch_link_collision_l_elbow_pitch_link_2'>
+        <pose>0 0 -0.11324 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_union_elbow_wrist.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_elbow_pitch_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_elbow_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='l_elbow_pitch_link_visual_l_elbow_pitch_link_1'>
+        <pose>0 0 -0.11324 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_elbow_link.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='l_elbow_pitch_link_visual_l_elbow_pitch_link_2'>
+        <pose>0 0 -0.11324 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_union_elbow_wrist.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_elbow_pitch' type='revolute'>
+      <child>l_elbow_pitch_link</child>
+      <parent>l_shoulder_yaw_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.74533</lower>
+          <upper>1.74533</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='l_wrist_yaw_link'>
+      <pose>0 0.34 -0.03531 0 -0 0</pose>
+      <inertial>
+        <pose>-0.004657 -0.001356 0.035884 0 -0 0</pose>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>4.543e-05</ixx>
+          <ixy>6.8e-07</ixy>
+          <ixz>7e-07</ixz>
+          <iyy>3.969e-05</iyy>
+          <iyz>-7.4e-07</iyz>
+          <izz>2.118e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_wrist_yaw_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_wrist_yaw.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_wrist_yaw_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_wrist_yaw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_wrist_yaw' type='revolute'>
+      <child>l_wrist_yaw_link</child>
+      <parent>l_elbow_pitch_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.8326</lower>
+          <upper>1.8326</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='l_wrist_pitch_link'>
+      <pose>0 0.34 -0.03531 0 -0 0</pose>
+      <inertial>
+        <pose>-0.002438 0.004651 -0.044838 0 -0 0</pose>
+        <mass>0.3</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='l_wrist_pitch_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_wrist_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='l_wrist_pitch_link_collision_l_wrist_pitch_link_1'>
+        <pose>0 0 -0.056 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_wrist_sensorFT.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='l_wrist_pitch_link_collision_l_wrist_pitch_link_2'>
+        <pose>0 0 -0.056 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_hand.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='l_wrist_pitch_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_wrist_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='l_wrist_pitch_link_visual_l_wrist_pitch_link_1'>
+        <pose>0 0 -0.056 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_wrist_sensorFT.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='l_wrist_pitch_link_visual_l_wrist_pitch_link_2'>
+        <pose>0 0 -0.056 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/l_hand.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='l_wrist_pitch' type='revolute'>
+      <child>l_wrist_pitch_link</child>
+      <parent>l_wrist_yaw_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.698132</lower>
+          <upper>0.959931</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='r_shoulder_pitch_link'>
+      <pose>0 -0.34 0.4957 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 0 0 -0 0</pose>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>0.00059121</ixx>
+          <ixy>6.03e-06</ixy>
+          <ixz>1.03e-06</ixz>
+          <iyy>0.00024956</iyy>
+          <iyz>5.131e-05</iyz>
+          <izz>0.00050653</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_shoulder_pitch_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_shoulder_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_shoulder_pitch_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_shoulder_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_shoulder_pitch' type='revolute'>
+      <child>r_shoulder_pitch_link</child>
+      <parent>waist_pitch_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='r_shoulder_roll_link'>
+      <pose>0 -0.34 0.4957 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 0 0 -0 0</pose>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>0.00018036</ixx>
+          <ixy>-7.73e-06</ixy>
+          <ixz>2.406e-05</ixz>
+          <iyy>0.00024499</iyy>
+          <iyz>1.826e-05</iyz>
+          <izz>0.00013143</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_shoulder_roll_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_shoulder_roll.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_shoulder_roll_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_shoulder_roll.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_shoulder_roll' type='revolute'>
+      <child>r_shoulder_roll_link</child>
+      <parent>r_shoulder_pitch_link</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-0.785398</lower>
+          <upper>2.0944</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='r_shoulder_yaw_link'>
+      <pose>0 -0.34 0.4957 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 0 0 -0 0</pose>
+        <mass>1.75063</mass>
+        <inertia>
+          <ixx>0.00227681</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00224821</iyy>
+          <iyz>-6.84e-06</iyz>
+          <izz>0.00032283</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_shoulder_yaw_link_collision'>
+        <pose>0 0 -0.12126 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_shoulder_yaw.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='r_shoulder_yaw_link_collision_r_shoulder_yaw_link_1'>
+        <pose>0 0 -0.27651 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_humerus.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='r_shoulder_yaw_link_collision_r_shoulder_yaw_link_2'>
+        <pose>0 0 -0.28351 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_union_humerus_elbow.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_shoulder_yaw_link_visual'>
+        <pose>0 0 -0.12126 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_shoulder_yaw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='r_shoulder_yaw_link_visual_r_shoulder_yaw_link_1'>
+        <pose>0 0 -0.27651 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_humerus.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='r_shoulder_yaw_link_visual_r_shoulder_yaw_link_2'>
+        <pose>0 0 -0.28351 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_union_humerus_elbow.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_shoulder_yaw' type='revolute'>
+      <child>r_shoulder_yaw_link</child>
+      <parent>r_shoulder_roll_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.0472</lower>
+          <upper>1.0472</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='r_elbow_pitch_link'>
+      <pose>0 -0.34 0.16669 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0.001 -0.000588 0 -0 0</pose>
+        <mass>2.396</mass>
+        <inertia>
+          <ixx>0.0005939</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00060871</iyy>
+          <iyz>-0</iyz>
+          <izz>0.00023257</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_elbow_pitch_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_elbow_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='r_elbow_pitch_link_collision_r_elbow_pitch_link_1'>
+        <pose>0 0 -0.11324 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_elbow_link.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='r_elbow_pitch_link_collision_r_elbow_pitch_link_2'>
+        <pose>0 0 -0.11324 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_union_elbow_wrist.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_elbow_pitch_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_elbow_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='r_elbow_pitch_link_visual_r_elbow_pitch_link_1'>
+        <pose>0 0 -0.11324 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_elbow_link.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='r_elbow_pitch_link_visual_r_elbow_pitch_link_2'>
+        <pose>0 0 -0.11324 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_union_elbow_wrist.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_elbow_pitch' type='revolute'>
+      <child>r_elbow_pitch_link</child>
+      <parent>r_shoulder_yaw_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.74533</lower>
+          <upper>1.74533</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='r_wrist_yaw_link'>
+      <pose>0 -0.34 -0.03531 0 -0 0</pose>
+      <inertial>
+        <pose>-0.004657 0.001356 0.035884 0 -0 0</pose>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>4.543e-05</ixx>
+          <ixy>6.8e-07</ixy>
+          <ixz>7e-07</ixz>
+          <iyy>3.969e-05</iyy>
+          <iyz>-7.4e-07</iyz>
+          <izz>2.118e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_wrist_yaw_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_wrist_yaw.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_wrist_yaw_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_wrist_yaw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_wrist_yaw' type='revolute'>
+      <child>r_wrist_yaw_link</child>
+      <parent>r_elbow_pitch_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.8326</lower>
+          <upper>1.8326</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='r_wrist_pitch_link'>
+      <pose>0 -0.34 -0.03531 0 -0 0</pose>
+      <inertial>
+        <pose>-0.002438 -0.004651 -0.044838 0 -0 0</pose>
+        <mass>0.3</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='r_wrist_pitch_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_wrist_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='r_wrist_pitch_link_collision_r_wrist_pitch_link_1'>
+        <pose>0 0 -0.056 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_wrist_sensorFT.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='r_wrist_pitch_link_collision_r_wrist_pitch_link_2'>
+        <pose>0 0 -0.056 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_hand.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='r_wrist_pitch_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_wrist_pitch.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='r_wrist_pitch_link_visual_r_wrist_pitch_link_1'>
+        <pose>0 0 -0.056 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_wrist_sensorFT.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='r_wrist_pitch_link_visual_r_wrist_pitch_link_2'>
+        <pose>0 0 -0.056 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://teo_description/meshes/arms/r_hand.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='r_wrist_pitch' type='revolute'>
+      <child>r_wrist_pitch_link</child>
+      <parent>r_wrist_yaw_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.698132</lower>
+          <upper>0.959931</upper>
+          <effort>30</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <static>0</static>
+   <!-- <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+      <robotNamespace>/teo</robotNamespace>
+    </plugin> -->
+  </model>
+</sdf>

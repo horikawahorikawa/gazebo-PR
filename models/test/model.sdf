@@ -1,0 +1,54 @@
+<?xml version='1.0'?>
+<sdf version="1.4">
+<model name="my_model">
+  <pose>0 0 0.5 0 0 0</pose>
+  <static>true</static>
+    <link name="link">
+      <inertial>
+        <mass>1.0</mass>
+        <inertia> <!-- interias are tricky to compute -->
+          <!-- http://answers.gazebosim.org/question/4372/the-inertia-matrix-explained/ -->
+          <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+          <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+          <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+          <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+          <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+          <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>1 1 1</size>
+          </box>
+        </geometry>
+      </collision>
+      <!--
+      <gazebo reference="display_screen_link">
+        <visual name="visual">
+          <plugin name="display_video_controller" filename="libgazebo_ros_video.so">
+            <topicName>image</topicName>
+              <height>120</height>
+              <width>160</width>
+            </plugin>
+        </visual>
+      </gazebo>
+    -->
+      <gazebo reference="texture_link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://test/stereo_R.material</uri>
+              <name>streo_R/test</name>
+            </script>
+          </material>
+        </visual>
+      </gazebo>
+    </link>
+  </model>
+</sdf>

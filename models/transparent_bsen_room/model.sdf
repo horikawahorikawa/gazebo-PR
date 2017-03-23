@@ -1,0 +1,372 @@
+<sdf version='1.4'>
+  <model name='transparent_bsen_room'>
+    <static>true</static>
+    <link name='bsen_link'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>7.5 3.5 0 0 -0 0</pose>
+        <mass>2000</mass>
+        <inertia>
+          <ixx>1.0</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>1.0</iyy>
+          <iyz>0.0</iyz>
+          <izz>1.0</izz>
+        </inertia>
+      </inertial>
+
+      <collision name='bsen_floor_collision'>
+        <pose>7.5 3.5 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>15.0 7.0 0.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <!-- <visual name='bsen_floor_visual'>
+        <pose>0 0 0.001 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/bsen.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <collision name='bsen_wall_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/bsen_wall.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <!-- <visual name='bsen_wall_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/bsen_wall.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='bsen_celling_collision'>
+        <pose>0 0 2.3 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/bsen_celling.dae</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='bsen_celling_visual'>
+        <pose>0 0 2.3 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/bsen_celling.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+   <!-- <collision name='kitchen_collision'>
+        <pose>9.06 5.87 0.4855 0 0 -1.57079633</pose>
+        <geometry>
+          <box>
+            <size>0.62 3.12 0.65</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='kitchen_visual'>
+        <pose>9.06 5.87 0.4855 0 0 -1.57079633</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/kitchen.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='meeting_table_collision'>
+        <pose>5.7 1.5 0.71 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.66</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='meeting_table_visual'>
+        <pose>5.7 1.5 0.36 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/meeting_table.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='tree_collision'>
+        <pose>14.3 5.3 0.55 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.2</radius>
+            <length>1.0</length>
+          </cylinder>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='tree_visual'>
+        <pose>14.3 5.3 0.0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/tree.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='tv_table_collision'>
+        <pose>14.25 2.5 0.175 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.35 2.7 0.35</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='tv_table_visual'>
+        <pose>14.25 2.5 0.175 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/tv_table.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='sofa_collision'>
+        <pose>11.75 2.6 0.395 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.8 2.35 0.77</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='sofa_visual'>
+        <pose>11.75 2.6 0.395 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/sofa.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='sofa_table_collision'>
+        <pose>12.7 2.5 0.664 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 1.3 0.01</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='sofa_table_visual'>
+        <pose>12.7 2.5 0.235 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/sofa_table.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='bed_collision'>
+        <pose>10.35 2.7 0.235 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>1.95 0.82 0.38</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='bed_visual'>
+        <pose>10.35 2.7 0.235 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/paramount_bed.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='carpet_collision'>
+        <pose>12.3 2.6 0.01 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>1.76 2.55 0.01</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='carpet_visual'>
+        <pose>12.3 2.6 0.01 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/carpet.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='drawer_collision'>
+        <pose>12.72 5.8 0.303 0 0 -1.57079633</pose>
+        <geometry>
+          <box>
+            <size>0.6 0.4 0.6</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='drawer_visual'>
+        <pose>12.72 5.8 0.303 0 0 -1.57079633</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/drawer.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+<!--
+      <collision name='wardrobe_collision'>
+        <pose>13.46 5.9 1.3 0 0 -1.57079633</pose>
+        <geometry>
+          <box>
+            <size>0.7 0.95 2.56</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='wardrobe_visual'>
+        <pose>13.46 5.9 1.3 0 0 -1.57079633</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/wardrobe.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='workdesk_collision'>
+        <pose>11.80 5.9 0.7 0 0 -1.57079633</pose>
+        <geometry>
+          <box>
+            <size>0.65 2.44 0.025</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='workdesk_visual'>
+        <pose>11.80 5.9 0.35 0 0 -1.57079633</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/work_desk.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='tv_multi_collision'>
+        <pose>14.37 2.2 1.45 0 0 -1.57079633</pose>
+        <geometry>
+          <box>
+            <size>2.5 0.2 1.4</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='tv_multi_visual'>
+        <pose>14.37 2.2 1.45 0 0 -1.57079633</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/tv_multi.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='intelingent_shelf_collision'>
+        <pose>11.5 4.2 0.255 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.3 0.46 0.47</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='intelingent_shelf_visual'>
+        <pose>11.65 3.970 0.005 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/intelingent_shelf.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- <collision name='refrigerator_collision'>
+        <pose>7.175 5.865 0.38 0 0 -1.57079633</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.47 0.72</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='refrigerator_visual'>
+        <pose>6.94 5.53 -0.01 0 0 -1.57079633</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/refrigerator.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+      <!-- Incopleted  -->
+      <!-- Connect refrigerator_door_link to refrigerator_link with hinge_joint -->
+      <!-- Embed Opening-Closing door Plugin(Now making) -->
+      <!--
+      <collision name='refrigerator_door_collision'>
+        <pose>6.94-0.035 5.53+0.45 -0.01+1.06 0 0 -1.57079633</pose>
+        <geometry>
+          <box>
+            <size>15.0 7.0 0.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='refrigerator_door_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/refrigerator_door.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      -->
+
+      <!-- <collision name='meeting_door_collision'>
+        <pose>1.94 3.035 1.31 0 0 1.57079</pose>
+        <geometry>
+          <box>
+            <size>0.03 1.23 2.0</size>
+          </box>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='meeting_door_visual'>
+        <pose>1.94 3.035 1.31 0 0 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/meeting_door.dae</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+
+    </link>
+  </model>
+</sdf>

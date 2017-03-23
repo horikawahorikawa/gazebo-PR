@@ -1,0 +1,80 @@
+<sdf version='1.4'>
+  <model name='simple_bsen_room'>
+    <static>true</static>
+    <link name='bsen_link'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>7.5 3.5 0 0 -0 0</pose>
+        <mass>2000</mass>
+        <inertia>
+          <ixx>1.0</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>1.0</iyy>
+          <iyz>0.0</iyz>
+          <izz>1.0</izz>
+        </inertia>
+      </inertial>
+
+      <collision name='bsen_floor_collision'>
+        <pose>7.5 3.5 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>15.0 7.0 0.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='bsen_floor_visual'>
+        <pose>0 0 0.001 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/bsen.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      
+      <collision name='refrigerator_collision'>
+        <pose>7.175 5.865 0.38 0 0 -1.57079633</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.47 0.72</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='refrigerator_visual'>
+        <pose>6.94 5.53 -0.01 0 0 -1.57079633</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/refrigerator.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+
+      <!-- Incopleted  -->
+      <!-- Connect refrigerator_door_link to refrigerator_link with hinge_joint -->
+      <!-- Embed Opening-Closing door Plugin(Now making) -->
+      <!--
+      <collision name='refrigerator_door_collision'>
+        <pose>6.94-0.035 5.53+0.45 -0.01+1.06 0 0 -1.57079633</pose>
+        <geometry>
+          <box>
+            <size>15.0 7.0 0.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='refrigerator_door_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bsen_room/model/refrigerator_door.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      -->
+
+    </link>
+  </model>
+</sdf>
