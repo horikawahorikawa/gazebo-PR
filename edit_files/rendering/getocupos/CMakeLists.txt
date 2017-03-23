@@ -1,0 +1,43 @@
+## cmake and project setting
+cmake_minimum_required(VERSION 2.8.3)
+project(oculuspositionplugin)
+
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+  sensor_msgs
+  tf
+  geometry_msgs
+  tms_msg_db
+)
+
+## catkin specific configuration
+catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES oculus_plugin
+  CATKIN_DEPENDS roscpp std_msgs sensor_msgs message_runtime geometry_msgs tms_msg_db
+  DEPENDS eigen
+)
+
+set(libname oculus_plugin)
+
+## Build option
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+  #${Eigen_INCLUDE_DIRS}
+  /usr/include/eigen3
+)
+
+add_library(
+  ${libname}
+  SHARED
+  #${RCS}
+  src/getocupos.cpp
+)
+
+add_dependencies(${libname} keytf_generate_messages_cpp tms_msg_db_gencpp)
+
+target_link_libraries(${libname}
+  ${catkin_LIBRARIES}
+)

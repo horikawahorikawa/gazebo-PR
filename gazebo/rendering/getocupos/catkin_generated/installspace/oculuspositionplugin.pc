@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: oculuspositionplugin
+Description: Description of oculuspositionplugin
+Version: 0.0.1
+Cflags: -I/usr/local/include
+Libs: -L/usr/local/lib -loculus_plugin
+Requires: roscpp std_msgs sensor_msgs message_runtime geometry_msgs tms_msg_db

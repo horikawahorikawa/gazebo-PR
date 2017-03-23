@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "oculuspositionplugin")
+set(oculuspositionplugin_MAINTAINER "Yoonseok Pyo <passionvirus@gmail.com>")
+set(oculuspositionplugin_DEPRECATED "")
+set(oculuspositionplugin_VERSION "0.0.1")
+set(oculuspositionplugin_BUILD_DEPENDS "roscpp" "std_msgs" "sensor_msgs" "tms_msg_db" "message_generation" "tf" "geometry_msgs" "nav_msgs")
+set(oculuspositionplugin_RUN_DEPENDS "roscpp" "std_msgs" "sensor_msgs" "tms_msg_db" "message_runtime" "tf" "geometry_msgs" "nav_msgs")
+set(oculuspositionplugin_BUILDTOOL_DEPENDS "catkin")

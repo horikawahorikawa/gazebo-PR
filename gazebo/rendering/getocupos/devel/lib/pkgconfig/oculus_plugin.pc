@@ -1,0 +1,8 @@
+prefix=/home/rts/gazebo-6.1.0/gazebo/rendering/getocupos/devel
+
+Name: oculus_plugin
+Description: Description of oculus_plugin
+Version: 0.0.1
+Cflags: -I/home/rts/gazebo-6.1.0/gazebo/rendering/getocupos/include
+Libs: -L/home/rts/gazebo-6.1.0/gazebo/rendering/getocupos/devel/lib -loculus_plugin
+Requires: roscpp std_msgs sensor_msgs message_runtime geometry_msgs tms_msg_db
